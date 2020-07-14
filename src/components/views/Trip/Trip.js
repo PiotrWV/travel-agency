@@ -10,9 +10,11 @@ import DetailsBox from '../../common/DetailsBox/DetailsBox';
 import DetailsImage from '../../common/DetailsImage/DetailsImage';
 import List from '../../common/List/List';
 import ListItem from '../../common/ListItem/ListItem';
+import OrderForm from '../../features/OrderForm/OrderFormContainer';
 
 import styles from './Trip.scss';
-import {Grid, Row, Col} from 'react-flexbox-grid';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import { promoPrice } from '../../../utils/promoPrice';
 
 const Trip = ({error, name, image, cost, days, description, country, intro}) => {
   if(error) return <NotFound />;
@@ -33,7 +35,7 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
               </div>
               <List variant='light'>
                 <ListItem title={`<strong>Duration:</strong> ${days} days`} icon='calendar-alt' />
-                <ListItem title={`<strong>Price:</strong> from ${cost}`} icon='money-bill-wave' />
+                <ListItem title={`<strong>Price:</strong> from ${promoPrice(cost, 20)}`} icon='money-bill-wave' />
               </List>
             </Col>
           </Row>
@@ -42,6 +44,18 @@ const Trip = ({error, name, image, cost, days, description, country, intro}) => 
       <Grid>
         <Row>
           <Col xs={12}>
+            <PageTitle text='Trip options' />
+            <OrderForm tripCost={cost} countryName={country.name} countryCode={[country.alpha2Code, country.alpha3Code]} />
+          </Col>
+        </Row>
+      </Grid>
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <div className={styles.prices}>
+              <p className={styles.happyPrice}>Price from: {promoPrice(cost, 20)}</p>
+              <p className={styles.standard}>Standard price: <span className={styles.standardPrice}>{cost}</span></p>
+            </div>
             <PageTitle text='Trip details' />
             {HTMLParser(description)}
           </Col>

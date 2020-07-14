@@ -20,6 +20,7 @@ const Trips = ({trips}) => (
               <TripSummary key={trip.id} {...trip} />
             )) : (
               <p>Sorry, no results found. Try adjusting the filters.</p>
+
             )}
           </Row>
         </Col>

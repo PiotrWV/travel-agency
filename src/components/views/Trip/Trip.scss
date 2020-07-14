@@ -8,3 +8,23 @@
 .intro {
   margin: 0 0 ($base-size * 3) 0;
 }
+
+.prices {
+  margin: 80px 0 40px 0;
+  line-height: 1px;
+
+  .happyPrice{
+    font-weight: bold;
+    font-size: 32px;
+  }
+
+  .standard {
+    color: #8f9190;
+
+    .standardPrice {
+      font-size: 18px;
+      font-weight: bold;
+      color: #797c79;
+    }
+  }
+}
